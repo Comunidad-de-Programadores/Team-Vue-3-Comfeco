@@ -2,8 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Private from '../views/Private'
-import Login from '../views/Login'
-import Sign from '../views/Sign'
 
 Vue.use(VueRouter)
 
@@ -19,13 +17,25 @@ const routes = [
     component: Private
   },
   {
-    path: '/Login',
-    name: 'Login',
-    component: Login
-  },  {
-    path: '/Sign',
-    name: 'Sign',
-    component: Sign 
+    path: '/auth',
+    component: () => import(/* webpackChunkName: "auth" */ '../layouts/AuthLayout.vue'),
+    children: [
+      {
+        path: 'login',
+        name: 'Login',
+        component: () => import(/* webpackChunkName: "login" */ '../views/auth/Login.vue')
+      },
+      {
+        path: 'sign',
+        name: 'Sign',
+        component: () => import(/* webpackChunkName: "sign" */ '../views/auth/Sign'),
+      },
+      {
+        path: 'reset-password',
+        name: 'Reset Pasword',
+        component: () => import(/* webpackChunkName: "reset-password" */ '../views/auth/ResetPassword'),
+      },
+    ]
   }
 ]
 

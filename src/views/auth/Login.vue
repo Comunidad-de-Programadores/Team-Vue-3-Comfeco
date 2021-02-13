@@ -3,8 +3,7 @@
     <div class="container mx-auto">
       <div class="max-w-md mx-auto my-10">
         <!-- <img class="mx-auto h-32" src="@/assets/icons/code-icon.svg" alt="Code" /> -->
-       
-        <div class="text-center flex justify-evenly items-center mb-12">
+   <div class="text-center flex justify-evenly items-center mb-12">
           <p
             class="text-lg font-semibold text-primary pb-1 border-b-2 border-primary dark:text-gray-200"
           >

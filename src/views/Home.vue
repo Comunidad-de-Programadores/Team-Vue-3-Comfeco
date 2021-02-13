@@ -1,6 +1,5 @@
 <template>
-  <div class="home">
- 
+  <div class="home">  
     this is a public page
   </div>
 </template>
@@ -9,7 +8,6 @@
 export default {
   name: 'Home',
   components: {
- 
-  }
+   }
 }
 </script>

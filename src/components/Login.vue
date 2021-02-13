@@ -52,9 +52,7 @@
     </div>
   </div>
 </template>
-<script> 
-
-import { required, minLength, between } from 'vuelidate/lib/validators'
+<script>  
 
 export default {
   name: "Login",
@@ -63,15 +61,6 @@ export default {
        username: '',
       password: '',
         email: ''
-    }
-  }, 
-    validations: {
-    name: {
-      required,
-      minLength: minLength(4)
-    },
-    age: {
-      between: between(20, 30)
     }
   }
   // validations() {

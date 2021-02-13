@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import '@/assets/css/index.css'
-// import VueCompositionAPI from '@vue/composition-api'
-
+import '@/assets/css/index.css' 
 
 Vue.config.productionTip = false
 new Vue({

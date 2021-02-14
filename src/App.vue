@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <Header />
+      <Header text="Ingresar"/>
     </div>
     <router-view/>
   </div>

@@ -7,7 +7,7 @@
           <p
             class="text-lg font-semibold text-primary pb-1 border-b-2 border-primary dark:text-gray-200"
           >
-            Inicia Sesión
+            <router-link to="register">Inicia Sesión</router-link>
           </p>
           <span class="w-2 bg-black"></span>
           <p class="text-lg font-semibold text-primary pb-1 dark:text-gray-200">

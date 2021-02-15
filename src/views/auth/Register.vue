@@ -28,8 +28,8 @@
                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                 v-model="username"
               />
-              <span class="m-1 text-left text-xs text-pink-600 font-medium"
-                >Lorem ipsum dolor sit,
+              <span class="m-1 text-left text-xs text-pink-600 font-medium" v-show="validate.username"
+                > Username requerido
               </span>
             </div>
             <div class="mb-4">
@@ -45,8 +45,8 @@
                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                 v-model="email"
               />
-              <span class="m-1 text-left text-xs text-pink-600 font-medium"
-                >Lorem ipsum dolor sit,
+              <span class="m-1 text-left text-xs text-pink-600 font-medium" v-show="validate.email"
+                >Email Requerido
               </span>
             </div>
             <div class="mb-4">
@@ -62,8 +62,8 @@
                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                 v-model="password"
               />
-              <span class="m-1 text-left text-xs text-pink-600 font-medium"
-                >Lorem ipsum dolor sit,
+              <span class="m-1 text-left text-xs text-pink-600 font-medium" v-show="validate.password"
+                >Password Requerido
               </span>
             </div>
             <div class="mb-4">
@@ -79,12 +79,12 @@
                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                 v-model="confirmarPassword"
               />
-              <span class="m-1 text-left text-xs text-pink-600 font-medium"
-                >Lorem ipsum dolor sit,
+              <span class="m-1 text-left text-xs text-pink-600 font-medium" v-show="validate.confirm"
+                >Password no es identico
               </span>
             </div>
             <div class="mb-2">
-              <button type="button" class="primary-button font-bold">REGISTRAR</button>
+              <button type="button" class="primary-button font-bold" @click="register">REGISTRAR</button>
             </div>
           </form>
         </div>
@@ -98,11 +98,26 @@ export default {
   name: "register",
   data() {
     return {
-      username: "",
-      email: "",
-      password: "",
-      confirmarPassword: "",
+      username: '',
+      email: '',
+      password: '',
+      confirmarPassword: '',
+      validate : {
+        username: false,
+        email: false,
+        password: false,
+        confirm: false
+      }
     };
   },
+  methods:{
+    register(){
+      this.username == ''  ? this.validate.username = true: this.validate.username = false
+      this.email == '' ? this.validate.email = true : this.validate.email = false;
+      this.password == '' ? this.validate.password = true : this.validate.password = false;
+      this.password != this.confirmarPassword ? this.validate.confirm = true : this.validate.confirm = false
+
+    }
+  }
 };
 </script>

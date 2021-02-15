@@ -7,7 +7,7 @@
           <p
             class="text-lg font-semibold text-primary pb-1 border-b-2 border-primary dark:text-gray-200"
           >
-            <router-link to="register">Inicia Sesión</router-link>
+            Inicia Sesión
           </p>
           <span class="w-2 bg-black"></span>
           <p class="text-lg font-semibold text-primary pb-1 dark:text-gray-200">
@@ -30,26 +30,39 @@
                 v-model="email"
                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
               />
-              <span class="m-1 text-left text-xs text-pink-600 font-medium" v-show="validate.email"
-              >Email Requerido.
+              <span
+                class="m-1 text-left text-xs text-pink-600 font-medium"
+                v-show="validate.email"
+                >Email Requerido.
               </span>
             </div>
             <div class="mb-3">
               <label
                 for="password"
                 class="text-sm text-gray-600 dark:text-gray-400"
-                >Contraseña</label
               >
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Your Password"
-                v-model="password"
-                class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-              />
-              <span class="m-1 text-left text-xs text-pink-600 font-medium" v-show="validate.password"
-              >Password Requerido.
+                Contraseña
+              </label>
+              <div class="form-control">
+                <input
+                  v-model="password"
+                  :type="showPassword ? 'text' : 'password'"
+                  class="form-control__input form-control__input--append"
+                  name="password"
+                  id="password"
+                  placeholder="Your Password"
+                />
+                <img
+                  class="form-control__icon form-control__icon--append"
+                  :src="passwordIcon"
+                  @click="showPassword = !showPassword"
+                />
+              </div>
+              <span
+                class="m-1 text-left text-xs text-pink-600 font-medium"
+                v-show="validate.password"
+              >
+                Password Requerido.
               </span>
             </div>
             <div class="mb-3 flex justify-between items-center">
@@ -63,12 +76,22 @@
                 type="button"
                 class="flex items-center text-sm text-gray-400 hover:text-primary dark:hover:text-primary"
               >
-                <input type="checkbox" />
-                <span class="ml-1">Mantenerme conectado</span>
+                <input v-model="keepConnected" type="checkbox" />
+                <button
+                  class="ml-1"
+                  type="button"
+                  @click="keepConnected = !keepConnected"
+                >
+                  Mantenerme conectado
+                </button>
               </button>
             </div>
             <div class="mb-6">
-              <button type="button" class="primary-button font-bold" @click="login">
+              <button
+                type="button"
+                class="primary-button font-bold"
+                @click="startLoginEmailPassword()"
+              >
                 INGRESAR
               </button>
             </div>
@@ -77,10 +100,14 @@
             </div>
             <div class="flex">
               <button type="button" class="social-button mr-1">
-                <img class="h-7" src="@/assets/icons/github.svg" alt="GitHub" />
-                <span class="pl-2">GitHub</span>
+                <img class="h-7" src="@/assets/icons/fb.svg" alt="Facebook" />
+                <span class="pl-2">Facebook</span>
               </button>
-              <button type="button" class="social-button ml-1">
+              <button
+                type="button"
+                class="social-button ml-1"
+                @click="startGoogleLogin()"
+              >
                 <img class="h-6" src="@/assets/icons/google.svg" alt="Google" />
                 <span class="pl-2">Google</span>
               </button>
@@ -93,23 +120,58 @@
 </template>
 
 <script>
+import { firebase, googleAuthProvider } from "@/firebase/config";
+import eye from "@/assets/icons/eye.svg";
+import eyeOff from "@/assets/icons/eye-off.svg";
 export default {
   name: "Login",
-  data(){
+  data() {
     return {
-      email: '',
-      password: '',
-      validate:{
-        email : false,
-        password: false
-      }
-    }
+      keepConnected: false,
+      showPassword: false,
+      email: "",
+      password: "",
+      validate: {
+        email: false,
+        password: false,
+      },
+    };
   },
-  methods:{
-    login(){
-      this.email == '' ? this.validate.email = true : this.validate.email = false;
-      this.password == '' ? this.validate.password = true : this.validate.password = false
-    }
-  }
+  computed: {
+    passwordIcon() {
+      if (this.showPassword) return eyeOff;
+      return eye;
+    },
+  },
+  methods: {
+    checkForm() {
+      this.validate.email = this.email === "";
+      this.validate.password = this.password === "";
+    },
+    startLoginEmailPassword() {
+      this.checkForm();
+      if (this.validate.email && this.validate.password) {
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then(({ user }) => {
+            console.log(user);
+            // commit("login", user);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
+    },
+    startGoogleLogin() {
+      firebase
+        .auth()
+        .signInWithPopup(googleAuthProvider)
+        .then(({ user }) => {
+          console.log(user);
+          // commit("login", user);
+        });
+    },
+  },
 };
 </script>

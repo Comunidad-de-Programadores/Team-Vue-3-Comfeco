@@ -9,6 +9,14 @@
     }
   }
 
+  &--append {
+    padding-right: 24px;
+  }
+
+  &--prepend {
+    padding-left: 24px;
+  }
+
   &__icon {
     position: absolute;
     width: 24px;
@@ -24,11 +32,4 @@
       left: 10px;
     }
   }
-}
-
-.icon-eye {
-  background: url("../icons/eye.svg");
-}
-.icon-eye-off {
-  background: url("../icons/eye-off.svg");
 }

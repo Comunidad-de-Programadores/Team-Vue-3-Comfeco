@@ -9,7 +9,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    props: {default: true}
   },
   {
     path: '/home',
@@ -23,7 +24,7 @@ const routes = [
       {
         path: 'login',
         name: 'Login',
-        component: () => import(/* webpackChunkName: "login" */ '../views/auth/Login.vue')
+        component: () => import(/* webpackChunkName: "login" */ '../views/auth/Login.vue'),
       },
       {
         path: 'register',

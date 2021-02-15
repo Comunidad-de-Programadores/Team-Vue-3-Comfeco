@@ -7,7 +7,7 @@
           <p
             class="text-lg font-semibold text-primary pb-1 border-b-2 border-primary dark:text-gray-200"
           >
-            Inicia Sesión
+            <router-link to="register">Inicia Sesión</router-link>
           </p>
           <span class="w-2 bg-black"></span>
           <p class="text-lg font-semibold text-primary pb-1 dark:text-gray-200">
@@ -27,8 +27,12 @@
                 name="email"
                 id="email"
                 placeholder="you@company.com"
+                v-model="email"
                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
               />
+              <span class="m-1 text-left text-xs text-pink-600 font-medium" v-show="validate.email"
+              >Email Requerido.
+              </span>
             </div>
             <div class="mb-3">
               <label
@@ -41,8 +45,12 @@
                 name="password"
                 id="password"
                 placeholder="Your Password"
+                v-model="password"
                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
               />
+              <span class="m-1 text-left text-xs text-pink-600 font-medium" v-show="validate.password"
+              >Password Requerido.
+              </span>
             </div>
             <div class="mb-3 flex justify-between items-center">
               <router-link
@@ -60,7 +68,7 @@
               </button>
             </div>
             <div class="mb-6">
-              <button type="button" class="primary-button font-bold">
+              <button type="button" class="primary-button font-bold" @click="login">
                 INGRESAR
               </button>
             </div>
@@ -87,5 +95,21 @@
 <script>
 export default {
   name: "Login",
+  data(){
+    return {
+      email: '',
+      password: '',
+      validate:{
+        email : false,
+        password: false
+      }
+    }
+  },
+  methods:{
+    login(){
+      this.email == '' ? this.validate.email = true : this.validate.email = false;
+      this.password == '' ? this.validate.password = true : this.validate.password = false
+    }
+  }
 };
 </script>

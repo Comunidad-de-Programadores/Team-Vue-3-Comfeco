@@ -158,15 +158,27 @@ export default {
         ? (this.validate.confirm = true)
         : (this.validate.confirm = false);
     },
-  },
-  startGoogleLogin() {
-    firebase
-      .auth()
-      .signInWithPopup(googleAuthProvider)
-      .then(({ user }) => {
-        console.log(user);
-        // commit("login", user);
-      });
+    startGoogleLogin() {
+      firebase
+        .auth()
+        .signInWithPopup(googleAuthProvider)
+        .then(({ user }) => {
+          console.log(user);
+          // commit("login", user);
+        });
+    },
+    startRegisterWithEmailPasswordName() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(async ({ user }) => {
+          await user.updateProfile({ displayName: this.username });
+          // commit("login", user);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
 };
 </script>

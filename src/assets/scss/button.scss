@@ -1,0 +1,13 @@
+.primary-button {
+  @apply w-full px-3 py-3 text-white bg-primary rounded-md;
+  :hover {
+    @apply shadow-md;
+  }
+  :focus {
+    @apply shadow-lg outline-none;
+  }
+}
+
+.social-button {
+  @apply w-full px-3 py-2 text-black bg-white shadow rounded-full flex justify-center items-center border border-primary;
+}

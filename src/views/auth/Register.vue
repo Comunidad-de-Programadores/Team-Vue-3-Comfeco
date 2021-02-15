@@ -4,7 +4,7 @@
       <div class="max-w-md mx-auto">
         <div class="text-center flex justify-evenly items-center mt-2 mb-4">
           <p class="text-lg font-semibold text-primary pb-1 dark:text-gray-200">
-            <router-link to="register">Inicia Sesión</router-link>
+            <router-link to="login">Inicia Sesión</router-link>
           </p>
           <span class="w-2 bg-black"></span>
           <p

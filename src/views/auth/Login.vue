@@ -15,26 +15,30 @@
           </p>
         </div>
         <div class="m-7">
-          <form action="">
+          <form @submit.prevent="startLoginEmailPassword">
             <div class="mb-6">
               <label
                 for="email"
                 class="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                >Correo electrónico</label
               >
+                Correo electrónico
+              </label>
               <input
-                type="email"
-                name="email"
+                v-model="$v.email.$model"
                 id="email"
-                placeholder="you@company.com"
-                v-model="email"
+                name="email"
+                type="email"
+                placeholder="example@comfeco.com"
                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
               />
-              <span
-                class="m-1 text-left text-xs text-pink-600 font-medium"
-                v-show="validate.email"
-                >Email Requerido.
-              </span>
+              <div v-if="$v.email.$error">
+                <span class="form__error" v-if="!$v.email.required">
+                  Email Requerido.
+                </span>
+                <span class="form__error" v-if="!$v.email.email">
+                  Ingrese un correo electrónico válido.
+                </span>
+              </div>
             </div>
             <div class="mb-3">
               <label
@@ -45,25 +49,28 @@
               </label>
               <div class="form-control">
                 <input
-                  v-model="password"
+                  v-model="$v.password.$model"
                   :type="showPassword ? 'text' : 'password'"
                   class="form-control__input form-control__input--append"
                   name="password"
                   id="password"
-                  placeholder="Your Password"
+                  placeholder="Contraseña"
                 />
-                <img
+                <!-- <img
                   class="form-control__icon form-control__icon--append"
                   :src="passwordIcon"
                   @click="showPassword = !showPassword"
-                />
+                /> -->
               </div>
-              <span
-                class="m-1 text-left text-xs text-pink-600 font-medium"
-                v-show="validate.password"
-              >
-                Password Requerido.
-              </span>
+              <div v-if="$v.password.$error">
+                <span class="form__error" v-if="!$v.password.required">
+                  La contraseña es requerida.
+                </span>
+                <span class="form__error" v-if="!$v.password.minLength">
+                  La contraseña debe tener a lo menos
+                  {{ $v.password.$params.minLength.min }} caraceteres.
+                </span>
+              </div>
             </div>
             <div class="mb-3 flex justify-between items-center">
               <router-link
@@ -88,8 +95,9 @@
             </div>
             <div class="mb-6">
               <button
-                type="button"
+                type="submit"
                 class="primary-button font-bold"
+                :disabled="$v.$invalid"
                 @click="startLoginEmailPassword()"
               >
                 INGRESAR
@@ -120,6 +128,7 @@
 </template>
 
 <script>
+import { required, email, minLength } from "vuelidate/lib/validators";
 import { firebase, googleAuthProvider } from "@/firebase/config";
 import eye from "@/assets/icons/eye.svg";
 import eyeOff from "@/assets/icons/eye-off.svg";
@@ -131,11 +140,11 @@ export default {
       showPassword: false,
       email: "",
       password: "",
-      validate: {
-        email: false,
-        password: false,
-      },
     };
+  },
+  validations: {
+    email: { required, email },
+    password: { required, minLength: minLength(6) },
   },
   computed: {
     passwordIcon() {
@@ -144,24 +153,17 @@ export default {
     },
   },
   methods: {
-    checkForm() {
-      this.validate.email = this.email === "";
-      this.validate.password = this.password === "";
-    },
     startLoginEmailPassword() {
-      this.checkForm();
-      if (this.validate.email && this.validate.password) {
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(this.email, this.password)
-          .then(({ user }) => {
-            console.log(user);
-            // commit("login", user);
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-      }
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(({ user }) => {
+          console.log(user);
+          // commit("login", user);
+        })
+        .catch((e) => {
+          console.log(e.message);
+        });
     },
     startGoogleLogin() {
       firebase

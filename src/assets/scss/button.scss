@@ -1,10 +1,10 @@
 .primary-button {
   @apply w-full px-3 py-3 text-white bg-primary rounded-md;
-  :hover {
+  &:hover {
     @apply shadow-md;
   }
-  :focus {
-    @apply shadow-lg outline-none;
+  &:disabled {
+    @apply bg-gray-400;
   }
 }
 

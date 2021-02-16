@@ -19,25 +19,29 @@
               <label
                 for="username"
                 class="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                >Username
+              >
+                Username
               </label>
               <input
                 type="text"
                 name="username"
                 placeholder="username"
                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                v-model="username"
+                v-model="$v.username.$model"
               />
-              <span
-                class="m-1 text-left text-xs text-pink-600 font-medium"
-                v-show="validate.username"
-              >
-                Username requerido
-              </span>
+              <div v-if="$v.username.$error">
+                <span class="form__error" v-if="!$v.username.required">
+                  Username es requerido.
+                </span>
+                <span class="form__error" v-if="!$v.username.minLength">
+                  El Username debe tener a lo menos
+                  {{ $v.username.$params.minLength.min }} caraceteres.
+                </span>
+              </div>
             </div>
             <div class="mb-4">
               <label
-                for="username"
+                for="email"
                 class="block mb-2 text-sm text-gray-600 dark:text-gray-400"
                 >Email
               </label>
@@ -46,13 +50,16 @@
                 name="email"
                 placeholder="email"
                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                v-model="email"
+                v-model="$v.email.$model"
               />
-              <span
-                class="m-1 text-left text-xs text-pink-600 font-medium"
-                v-show="validate.email"
-                >Email Requerido
-              </span>
+              <div v-if="$v.email.$error">
+                <span class="form__error" v-if="!$v.email.required">
+                  Email Requerido.
+                </span>
+                <span class="form__error" v-if="!$v.email.email">
+                  Ingrese un correo electrónico válido.
+                </span>
+              </div>
             </div>
             <div class="mb-4">
               <label
@@ -65,13 +72,17 @@
                 name="password"
                 placeholder="password"
                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                v-model="password"
+                v-model="$v.password.$model"
               />
-              <span
-                class="m-1 text-left text-xs text-pink-600 font-medium"
-                v-show="validate.password"
-                >Password Requerido
-              </span>
+              <div v-if="$v.password.$error">
+                <span class="form__error" v-if="!$v.password.required">
+                  La contraseña es requerida.
+                </span>
+                <span class="form__error" v-if="!$v.password.minLength">
+                  La contraseña debe tener a lo menos
+                  {{ $v.password.$params.minLength.min }} caraceteres.
+                </span>
+              </div>
             </div>
             <div class="mb-4">
               <label
@@ -84,19 +95,23 @@
                 name="confirmacion-password"
                 placeholder="confirmar password"
                 class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                v-model="confirmarPassword"
+                v-model="$v.confirmarPassword.$model"
               />
-              <span
-                class="m-1 text-left text-xs text-pink-600 font-medium"
-                v-show="validate.confirm"
-                >Password no es identico
-              </span>
+              <div v-if="$v.confirmarPassword.$error">
+                <span
+                  class="form__error"
+                  v-if="!$v.confirmarPassword.sameAsPassword"
+                >
+                  Las contraseñas no son identicas.
+                </span>
+              </div>
             </div>
             <div class="mb-4">
               <button
                 type="button"
                 class="primary-button font-bold"
-                @click="register"
+                :disabled="$v.$invalid"
+                @click="startRegisterWithEmailPasswordName()"
               >
                 REGISTRAR
               </button>
@@ -126,6 +141,7 @@
 </template>
 
 <script>
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 import { firebase, googleAuthProvider } from "@/firebase/config";
 export default {
   name: "Register",
@@ -135,29 +151,15 @@ export default {
       email: "",
       password: "",
       confirmarPassword: "",
-      validate: {
-        username: false,
-        email: false,
-        password: false,
-        confirm: false,
-      },
     };
   },
+  validations: {
+    username: { required, minLength: minLength(4) },
+    email: { required, email },
+    password: { required, minLength: minLength(6) },
+    confirmarPassword: { sameAsPassword: sameAs("password") },
+  },
   methods: {
-    register() {
-      this.username == ""
-        ? (this.validate.username = true)
-        : (this.validate.username = false);
-      this.email == ""
-        ? (this.validate.email = true)
-        : (this.validate.email = false);
-      this.password == ""
-        ? (this.validate.password = true)
-        : (this.validate.password = false);
-      this.password != this.confirmarPassword
-        ? (this.validate.confirm = true)
-        : (this.validate.confirm = false);
-    },
     startGoogleLogin() {
       firebase
         .auth()
@@ -173,6 +175,7 @@ export default {
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(async ({ user }) => {
           await user.updateProfile({ displayName: this.username });
+          console.log(user);
           // commit("login", user);
         })
         .catch((e) => {

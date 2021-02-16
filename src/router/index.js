@@ -41,6 +41,11 @@ const routes = [
         name: 'Reset Pasword',
         component: () => import(/* webpackChunkName: "reset-password" */ '../views/auth/ResetPassword'),
       },
+      {
+        path: '/Terminos-y-Condiciones',
+        name: 'Condiciones',
+        component: () => import(/* webpackChunkName: "login" */ '../components/Condiciones y Politicas'),
+      }
     ]
   }
 ]

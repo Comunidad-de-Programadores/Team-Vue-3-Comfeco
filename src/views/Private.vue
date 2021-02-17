@@ -18,11 +18,15 @@
         :src="currentUser.photoURL"
         alt="User Photo"
       />
+      <button class="primary-button font-bold mt-4" @click="logout()">
+        Logout
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { firebase } from "@/firebase/config";
 export default {
   name: "Private",
   data() {
@@ -32,6 +36,12 @@ export default {
   },
   created() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  },
+  methods: {
+    async logout() {
+      await firebase.auth().signOut();
+      this.$router.push("/");
+    },
   },
 };
 </script>

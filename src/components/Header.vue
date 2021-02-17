@@ -28,6 +28,11 @@
 <script>
 export default {
   name: "Header",
-  props: ["text"],
+  props: {
+    text: {
+      type: String,
+      default: "Ingresar",
+    },
+  },
 };
 </script>

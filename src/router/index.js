@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Private from '../views/Private'
+import NotFound from '../views/NotFound.vue'
+import { firebase } from "@/firebase/config";
 
 Vue.use(VueRouter)
 
@@ -10,12 +11,15 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    props: {default: true}
+    props: { default: true }
   },
   {
-    path: '/home',
+    path: '/private',
     name: 'Private',
-    component: Private
+    component: () => import(/* webpackChunkName: "private" */ '../views/Private.vue'),
+    meta: {
+      requiresAuth: true
+    },
   },
   {
     path: '/auth',
@@ -29,7 +33,7 @@ const routes = [
       {
         path: 'register',
         name: 'Register',
-        component: () => import(/* webpackChunkName: "login" */ '../views/auth/Register.vue')
+        component: () => import(/* webpackChunkName: "register" */ '../views/auth/Register.vue')
       },
       {
         path: 'sign',
@@ -44,9 +48,13 @@ const routes = [
       {
         path: '/Terminos-y-Condiciones',
         name: 'Condiciones',
-        component: () => import(/* webpackChunkName: "login" */ '../components/Condiciones y Politicas'),
+        component: () => import(/* webpackChunkName: "condiciones" */ '../components/Condiciones y Politicas'),
       }
     ]
+  },
+  {
+    path: '*',
+    component: NotFound,
   }
 ]
 
@@ -54,6 +62,33 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+
+  let isAuth = false;
+  firebase.auth().onAuthStateChanged(async (user) => {
+
+    if (user?.uid) {
+      isAuth = true;
+      const { uid, displayName, email, photoURL } = user;
+      localStorage.setItem("currentUser", JSON.stringify({ uid, displayName, email, photoURL }));
+    }
+
+    // La ruta requiere autentificación
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      if (isAuth) next();
+      else next({ name: 'Login' });
+    } else {
+      // Evitamos que un usuario logeado ingrese a alguna vista con el path auth
+      if (isAuth && to.path.includes('auth')) {
+        // En caso de ser así enviamos al usuario al Home
+        next({ name: 'Home' });
+      }
+      else next();
+    }
+
+  });
 })
 
 export default router

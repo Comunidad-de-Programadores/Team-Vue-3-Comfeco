@@ -159,7 +159,7 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(({ user }) => {
           console.log(user);
-          // commit("login", user);
+          this.$router.push("/private");
         })
         .catch((e) => {
           console.log(e.message);
@@ -171,7 +171,7 @@ export default {
         .signInWithPopup(googleAuthProvider)
         .then(({ user }) => {
           console.log(user);
-          // commit("login", user);
+          this.$router.push("/private");
         });
     },
   },

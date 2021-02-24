@@ -18,13 +18,13 @@
                             <img src="../assets/icons/Youtube.svg" alt="Youtube Logo">
                             </a>
                             <a class="flex inline-block w-5 h-2 content-center items-center m-2" href="https://www.facebook.com/groups/2637132626546045" target="_blank" rel="noopener noreferrer">
-                            <img src="..\assets\icons\Facebook.svg" alt="Facebook Logo">
+                            <img src="../assets/icons/Facebook.svg" alt="Facebook Logo">
                             </a>
                             <a class="flex inline-block w-5 h-2 content-center items-center m-2" href="https://www.instagram.com/comfeco/" target="_blank" rel="noopener noreferrer">
-                                <img src="..\assets\icons\Instagram.svg" alt="Instagram Logo">
+                                <img src="../assets/icons/Instagram.svg" alt="Instagram Logo">
                             </a>
                             <a class="flex inline-block w-5 h-2 content-center items-center m-2" href="https://discord.com/invite/5Bb5yvzNPr" target="_blank" rel="noopener noreferrer">
-                                <img src="..\assets\icons\discord.svg" alt="Discord Logo">
+                                <img src="../assets/icons/discord.svg" alt="Discord Logo">
                             </a>
                         </li>
                     </ul>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="w-96 p-8">
                     <div class="inline-block">
-                        <img class="w-10 h-10 ml-8   inline-block" src="..\assets\images\Isotipo-brand.png" alt="COMFECO Logo">
+                        <img class="w-10 h-10 ml-8   inline-block" src="../assets/images/Isotipo-brand.png" alt="COMFECO Logo">
                         <p class="w-max-w ml-8 inline-block">Comunity Fest and Code</p>
                     </div>
                     <p class="ml-32 sm:ml-32 text-center inline-block">COMFECO &copy; 2020</p>

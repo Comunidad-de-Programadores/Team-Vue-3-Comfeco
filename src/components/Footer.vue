@@ -12,7 +12,7 @@
                     </div>
                     <div class="ml-8 mt-5 mr-8 inline-block">
                     <ul>
-                        <h2 class="relative font-medium mb-1 border-b-2 border-black max-w-max border-primary">Follow Us</h2>
+                        <h2 class="relative font-medium mb-1 border-b-2 max-w-max border-primary">Follow Us</h2>
                         <li class="flex mt-5">
                             <a class="flex inline-block w-5 h-2 content-center items-center m-2" href="https://www.youtube.com/channel/UC0oi8uH1vxDcyt7b_3iByew" target="_blank" rel="noopener noreferrer">
                             <img src="../assets/icons/Youtube.svg" alt="Youtube Logo">
@@ -30,16 +30,16 @@
                     </ul>
                 </div>
                 <div class="ml-8 mt-3 mb-3 mr-8 inline-block">
-                    <h2 class="relative font-medium mb-1 border-b-2 border-black max-w-max border-primary">Quick Links</h2>
+                    <h2 class="relative font-medium mb-1 border-b-2 max-w-max border-primary">Quick Links</h2>
                     <ul>
                         <li class="flex mt-1"><router-link to="/Terminos-y-Condiciones" target="_blank">Privacity Policy</router-link></li>
-                        <li class="flex mt-1"><a href="/Terminos-y-condiciones" target="_blank">Terms & Conditions</a></li>
+                        <li class="flex mt-1"><router-link to="/Terminos-y-Condiciones" target="_blank">Terms & Conditions</router-link></li>
                         <li class="flex mt-1"><a href="https://discord.com/invite/5Bb5yvzNPr" target="_blank">Contac Us</a></li>
                     </ul>
                 </div>
-                <div class=" w-96">
+                <div class="w-96 p-8">
                     <div class="inline-block">
-                        <img class="w-10 h-10 ml-8 inline-block" src="..\assets\images\Isotipo-brand.png" alt="COMFECO Logo">
+                        <img class="w-10 h-10 ml-8   inline-block" src="..\assets\images\Isotipo-brand.png" alt="COMFECO Logo">
                         <p class="w-max-w ml-8 inline-block">Comunity Fest and Code</p>
                     </div>
                     <p class="ml-32 sm:ml-32 text-center inline-block">COMFECO &copy; 2020</p>

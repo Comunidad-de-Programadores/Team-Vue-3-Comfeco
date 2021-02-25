@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import vuelidate from "vuelidate";
+
 Vue.use(vuelidate);
 
 import App from './App.vue'

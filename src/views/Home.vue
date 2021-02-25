@@ -9,26 +9,36 @@
 =======
     <Contador/>
     <Footer/>
+<<<<<<< HEAD
+>>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
+=======
 >>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
   </div>
 </template>
 
 <script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Header from "@/components/Header.vue";
 import Contador from "@/components/Contador.vue";
 import CarouselLeaders from "@/components/CarouselLeaders.vue";
 import CarouselLeaders from "../components/Carousel-Leaders.vue";
 =======
+=======
+>>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
 
 import navbar from "../components/nav-bar";
 import Contador from '../components/Contador';
 import Footer from '../components/Footer'
+<<<<<<< HEAD
+>>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
+=======
 >>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
 
 export default {
   name: "Home",
   components: {
+<<<<<<< HEAD
 <<<<<<< HEAD
     Header,
     Contador,
@@ -139,6 +149,11 @@ export default {
         },
       ],
     };
+=======
+    navbar,
+    Contador,
+    Footer
+>>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
 =======
     navbar,
     Contador,

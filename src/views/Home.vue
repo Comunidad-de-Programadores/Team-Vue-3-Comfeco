@@ -1,48 +1,32 @@
 <template>
   <div class="home h-screen">
-    <navbar/>
+    <navbar />
     <h1 class="text-4xl font-bold text-center my-4">HomePage</h1>
-<<<<<<< HEAD
     <Contador />
     <hr />
     <carousel-leaders title="Team Leaders" :content="contentCarouselLeaders" />
-=======
-    <Contador/>
-    <Footer/>
-<<<<<<< HEAD
->>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
-=======
->>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
+    <Contador />
+    <Footer />
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-<<<<<<< HEAD
 import Header from "@/components/Header.vue";
 import Contador from "@/components/Contador.vue";
 import CarouselLeaders from "@/components/CarouselLeaders.vue";
-import CarouselLeaders from "../components/Carousel-Leaders.vue";
-=======
-=======
->>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
 
 import navbar from "../components/nav-bar";
-import Contador from '../components/Contador';
-import Footer from '../components/Footer'
-<<<<<<< HEAD
->>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
-=======
->>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
+import Contador from "../components/Contador";
+import Footer from "../components/Footer";
 
 export default {
   name: "Home",
   components: {
-<<<<<<< HEAD
-<<<<<<< HEAD
+    navbar,
     Header,
     Contador,
-    Carousel,
+    CarouselLeaders,
+    Footer,
   },
   data() {
     return {
@@ -149,16 +133,6 @@ export default {
         },
       ],
     };
-=======
-    navbar,
-    Contador,
-    Footer
->>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
-=======
-    navbar,
-    Contador,
-    Footer
->>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
   },
 };
 </script>

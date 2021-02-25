@@ -18,8 +18,13 @@
     <div class="md:w-1/4 sm:w-2/4 flex justify-end">
       <router-link
         to="/auth/login"
+<<<<<<< HEAD
         class="bg-primary hover:bg-pink-700 md:py-3 md:px-5 py-2 px-1 rounded-md md:text-xl text-sm text-white font-bold shadow-xl transition duration-200 ease-in-out outline-none pointer"
         >{{ text }}</router-link
+=======
+        class="bg-primary hover:bg-pink-700 md:py-3 md:px-5 py-2 px-1 rounded-md md:text-xl text-sm text-white font-bold shadow-xl transition duration-200 ease-in-out outline-none"
+        target="_blank">{{ text }}</router-link
+>>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
       >
     </div>
   </header>

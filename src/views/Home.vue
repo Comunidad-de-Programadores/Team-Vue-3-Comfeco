@@ -1,22 +1,35 @@
 <template>
   <div class="home h-screen">
-    <Header />
+    <navbar/>
     <h1 class="text-4xl font-bold text-center my-4">HomePage</h1>
+<<<<<<< HEAD
     <Contador />
     <hr />
     <carousel-leaders title="Team Leaders" :content="contentCarouselLeaders" />
+=======
+    <Contador/>
+    <Footer/>
+>>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import Header from "@/components/Header.vue";
 import Contador from "@/components/Contador.vue";
 import CarouselLeaders from "@/components/CarouselLeaders.vue";
 import CarouselLeaders from "../components/Carousel-Leaders.vue";
+=======
+
+import navbar from "../components/nav-bar";
+import Contador from '../components/Contador';
+import Footer from '../components/Footer'
+>>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
 
 export default {
   name: "Home",
   components: {
+<<<<<<< HEAD
     Header,
     Contador,
     Carousel,
@@ -126,6 +139,11 @@ export default {
         },
       ],
     };
+=======
+    navbar,
+    Contador,
+    Footer
+>>>>>>> db06f3bcf95d719da0824f77e855250576ad6137
   },
 };
 </script>

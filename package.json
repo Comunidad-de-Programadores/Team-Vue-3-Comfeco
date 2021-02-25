@@ -10,7 +10,7 @@
   "dependencies": {
     "@vue/cli": "^4.5.11",
     "core-js": "^3.6.5",
-    "firebase": "^8.2.7",
+    "firebase": "^8.2.9",
     "moment": "^2.29.1",
     "postcss": "^8.2.6",
     "tailwindcss": "^2.0.3",

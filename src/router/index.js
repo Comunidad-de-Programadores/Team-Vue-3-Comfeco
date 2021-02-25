@@ -14,7 +14,7 @@ const routes = [
     props: { default: true }
   },
   {
-    path: '/private',
+    path: '/home',
     name: 'Private',
     component: () => import(/* webpackChunkName: "private" */ '../views/Private.vue'),
     meta: {
@@ -34,11 +34,6 @@ const routes = [
         path: 'register',
         name: 'Register',
         component: () => import(/* webpackChunkName: "register" */ '../views/auth/Register.vue')
-      },
-      {
-        path: 'sign',
-        name: 'Sign',
-        component: () => import(/* webpackChunkName: "sign" */ '../views/auth/Sign'),
       },
       {
         path: 'reset-password',

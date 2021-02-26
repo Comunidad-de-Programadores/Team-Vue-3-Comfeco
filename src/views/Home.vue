@@ -5,7 +5,11 @@
     <h1 class="text-4xl font-bold text-center my-4">HomePage</h1>
     <Contador />
     <hr />
-    <carousel-leaders title="Team Leaders" :content="contentCarouselLeaders" />
+    <div class="flex justify-center flex-col">
+      <carousel-leaders title="Team Leaders" :content="contentCarouselLeaders" />
+      <hr>
+      <carousel-sponsors :content="contentCarouselSponsors"></carousel-sponsors>
+    </div>
     <Footer />
   </div>
 </template>
@@ -14,6 +18,7 @@
 import Header from "../components/Header";
 import Contador from "@/components/Contador.vue";
 import CarouselLeaders from "@/components/CarouselLeaders.vue";
+import CarouselSponsors from "@/components/CarouselSponsors.vue";
 import navbar from "../components/nav-bar";
 import Footer from "../components/Footer";
 
@@ -24,6 +29,7 @@ export default {
     Header,
     Contador,
     CarouselLeaders,
+    CarouselSponsors,
     Footer,
   },
   data() {
@@ -130,6 +136,52 @@ export default {
           leaderName: "Oscar Barajas",
         },
       ],
+      contentCarouselSponsors: [
+        {
+          sponsorImg:require("@/assets/images/sponsors/sponsor-codelytv.webp"),
+          sponsorName: "CodelyTV",
+        },
+        {
+          sponsorImg:require("@/assets/images/sponsors/sponsor-codigofacilito.webp"),
+          sponsorName: "CodigoFacilito",
+        },
+        {
+          sponsorImg:require("@/assets/images/sponsors/sponsor-dominicode.webp"),
+          sponsorName: "Dominicode",
+        },
+        {
+          sponsorImg:require("@/assets/images/sponsors/sponsor-egghead.webp"),
+          sponsorName: "EggHead",
+        },
+        {
+          sponsorImg:require("@/assets/images/sponsors/sponsor-fernando_herrera.webp"),
+          sponsorName: "Fernando Herrera",
+        },
+        {
+          sponsorImg:require("@/assets/images/sponsors/sponsor-huawei.webp"),
+          sponsorName: "Huawei",
+        },
+        {
+          sponsorImg:require("@/assets/images/sponsors/sponsor-jose_dimas_lujan.webp"),
+          sponsorName: "CodelyTV",
+        },
+        {
+          sponsorImg:require("@/assets/images/sponsors/sponsor-latamdev.webp"),
+          sponsorName: "LatamDev",
+        },
+        {
+          sponsorImg:require("@/assets/images/sponsors/sponsor-leonidas_esteban.webp"),
+          sponsorName: "Leonidas Esteban",
+        },
+        {
+          sponsorImg:require("@/assets/images/sponsors/sponsor-stacklycode.webp"),
+          sponsorName: "stacklycode",
+        },
+        {
+          sponsorImg:require("@/assets/images/sponsors/sponsor-tekkitv.webp"),
+          sponsorName: "Tekkitv",
+        }
+      ]
     };
   },
 };

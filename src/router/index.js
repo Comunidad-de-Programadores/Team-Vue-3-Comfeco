@@ -2,8 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import NotFound from '../views/NotFound.vue'
-// import { firebase } from "@/firebase/config";  
-
+import { firebase } from "@/firebase/config";
 Vue.use(VueRouter)
 
 const routes = [
@@ -15,7 +14,7 @@ const routes = [
   },
   {
     path: '/home',
-    name: 'Private',
+    name: 'Home',
     component: () => import(/* webpackChunkName: "private" */ '../views/Private.vue'),
     meta: {
       requiresAuth: true
@@ -59,31 +58,31 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
 
-//   let isAuth = false;
-//   firebase.auth().onAuthStateChanged(async (user) => {
+  let isAuth = false;
+  firebase.auth().onAuthStateChanged(async (user) => {
 
-//     if (user?.uid) {
-//       isAuth = true;
-//       const { uid, displayName, email, photoURL } = user;
-//       localStorage.setItem("currentUser", JSON.stringify({ uid, displayName, email, photoURL }));
-//     }
+    if (user?.uid) {
+      isAuth = true;
+      const { uid, displayName, email, photoURL } = user;
+      localStorage.setItem("currentUser", JSON.stringify({ uid, displayName, email, photoURL }));
+    }
 
-//     // La ruta requiere autentificación
-//     if (to.matched.some(record => record.meta.requiresAuth)) {
-//       if (isAuth) next();
-//       else next({ name: 'Login' });
-//     } else {
-//       // Evitamos que un usuario logeado ingrese a alguna vista con el path auth
-//       if (isAuth && to.path.includes('auth')) {
-//         // En caso de ser así enviamos al usuario al Home
-//         next({ name: 'Home' });
-//       }
-//       else next();
-//     }
+    // La ruta requiere autentificación
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      if (isAuth) next();
+      else next({ name: 'Login' });
+    } else {
+      // Evitamos que un usuario logeado ingrese a alguna vista con el path auth
+      if (isAuth && to.path.includes('auth')) {
+        // En caso de ser así enviamos al usuario al Home
+        next({ name: 'Home' });
+      }
+      else next();
+    }
 
-//   });
-// })
+  });
+})
 
 export default router

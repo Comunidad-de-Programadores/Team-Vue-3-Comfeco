@@ -42,8 +42,36 @@ const routes = [
       {
         path: '/Terminos-y-Condiciones',
         name: 'Condiciones',
-        component: () => import(/* webpackChunkName: "condiciones" */ '../components/Condiciones y Politicas'),
+        component: () => import(/* webpackChunkName: "condiciones" */ '../components/CondicionesyPoliticas'),
       }
+      
+    ]
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import(/* webpackChunkName: "condiciones" */ '../views/Profile'),
+    children:[
+      {
+        path: 'perfil',
+        name: 'Perfil',
+        component: () => import(/* webpackChunkName: "login" */ '../views/profile/Perfil.vue'),
+      },
+      {
+        path: 'insignia',
+        name: 'Insignia',
+        component: () => import(/* webpackChunkName: "login" */ '../views/profile/Perfil.vue'),
+      },
+      {
+        path: 'grupos',
+        name: 'Grupos',
+        component: () => import(/* webpackChunkName: "login" */ '../views/profile/Perfil.vue'),
+      },
+      {
+        path: 'eventos',
+        name: 'Eventos',
+        component: () => import(/* webpackChunkName: "login" */ '../views/profile/Perfil.vue'),
+      },
     ]
   },
   {

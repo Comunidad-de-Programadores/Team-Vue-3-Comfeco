@@ -1,16 +1,15 @@
 <template>
-  <div>
-    <footer
-      class="relative w-full h-auto py-px-50 pr-px-100 flex space-between flex-wrap"
-    >
+  <div id="footer-container" class="bg-auto ml-24">
+    <footer class="relative w-full h-auto py-px-50 pr-px-100 flex space-between flex-wrap lg:mt-24">
       <div class="flex space-between flex-wrap flex-row">
         <div class="ml-8 mt-5 mr-8 inline-block">
           <h2 class="relative font-medium mb-1 border-b-2 max-w-max border-primary">
             About Us
           </h2>
           <p class="w-50">
-            Participa del primer festival de código en hispanoamérica hecho por
-            desarrolladores, para desarrolladores!
+            COMFECO (Community Fest and Code) le da la bienvenida a todos aquellos entusiastas
+            <br/>
+            que desean aprender y conocer a programadores del todo el mundo a través de esta travesía!
           </p>
         </div>
         <div class="ml-8 mt-5 mr-8 inline-block">
@@ -69,7 +68,7 @@
               >
             </li>
             <li class="flex mt-1">
-              <a href="/Terminos-y-condiciones" target="_blank">Terms & Conditions</a>
+              <router-link to="/terminos-y-condiciones">Terms & Conditions</router-link>
             </li>
             <li class="flex mt-1">
               <a href="https://discord.com/invite/5Bb5yvzNPr" target="_blank"
@@ -87,7 +86,7 @@
             />
             <p class="w-max-w ml-8 inline-block">Comunity Fest and Code</p>
           </div>
-          <p class="ml-32 sm:ml-32 text-center inline-block">COMFECO &copy; 2020</p>
+          <p class="p-2 ml-32 sm:ml-32 text-center inline-block">COMFECO &copy; 2020</p>
         </div>
       </div>
     </footer>
@@ -96,6 +95,6 @@
 
 <script>
 export default {
-  name: "Footer",
+  name: "Footer"
 };
 </script>

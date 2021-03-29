@@ -2,7 +2,7 @@
   <div class="container mx-auto">
     <div class="">
       <div class="flex justify-center">
-        <h3 class=" lg:text-2xl">Preparate lo bueno esta por venir</h3>
+        <h3 class="lg:text-2xl">Preparate lo bueno esta por venir</h3>
       </div>
       <div class="flex justify-center h-full">
         <div class="center-element-cont font-contador">

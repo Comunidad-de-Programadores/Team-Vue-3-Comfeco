@@ -1,5 +1,14 @@
 <template>
-  <div class="flex items-center">
+ <div id="Register">
+    <div id="header">
+      <div id="header-container">
+        <Header/>
+      </div>
+      <div id="login-mobile-decoration" class=" w-full lg:hidden">
+        <img src="../../assets/images/login-decoration.png" alt="Purple Water UI">
+      </div>
+    </div>
+    <div id="Regidter-form" class="flex items-center">
     <div class="container mx-auto">
       <div class="max-w-md mx-auto my-10">
         <div class="text-center flex justify-evenly items-center mt-2 mb-4">
@@ -88,7 +97,7 @@
               <label
                 for="confirmacion-password"
                 class="block mb-2 text-sm text-gray-600 dark:text-gray-400"
-                >Confirmar password
+                >Confirm password
               </label>
               <input
                 type="password"
@@ -138,11 +147,35 @@
       </div>
     </div>
   </div>
+  <div id="footer" class="">
+    <div class="hidden lg:inline-block">
+      <Footer/>
+    </div>
+    <div class="bg-gray-200 lg:hidden">
+      <p class="inline-block h-full w-6/12 text-center text-lg subpixel-antialiased font-normal">COMFECO &copy; 2020</p>
+      <ul class="inline-block w-6/12">
+        <li class="w-full pl-10 pt-1">
+          <a href="https://www.youtube.com/channel/UC0oi8uH1vxDcyt7b_3iByew" class="inline-block w-5 h-5 content-center items-center m-2 bg-gray-200">
+            <img src="../../assets/icons/footer-mobile-icons/youtube.svg" alt="Youtube Logo" class="bg-gray-200">
+          </a>
+          <a href="https://www.instagram.com/comfeco/" class="inline-block w-5 h-5 content-center items-center m-2 bg-gray-200">
+            <img src="../../assets/icons/footer-mobile-icons/instagram.svg" alt="Instagram Logo" class="bg-gray-200">
+          </a>
+          <a href="https://www.facebook.com/groups/2637132626546045" class="inline-block w-5 h-5 content-center items-center m-2 bg-gray-200">
+            <img src="../../assets/icons/footer-mobile-icons/facebook.svg" alt="Facebook Logo" class="bg-gray-200">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
 </template>
 
 <script>
+import Header from '../../components/Header'
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 import { firebase, googleAuthProvider } from "@/firebase/config";
+import Footer from '../../components/Footer'
 export default {
   name: "Register",
   data() {
@@ -183,5 +216,9 @@ export default {
         });
     },
   },
+  components:{
+    Header,
+    Footer
+  }
 };
 </script>

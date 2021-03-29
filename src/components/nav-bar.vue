@@ -1,5 +1,5 @@
 <template>
-  <nav class=" bg-white border-b-4 border-primary">
+    <nav class=" text-xl bg-white border-b-4 border-primary">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -60,17 +60,11 @@
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
-              <h1 class="text-black px-3 py-2 font-semibold">
-                Comunity Fest and Code
-              </h1>
-              <a
-                href="#"
-                class="text-black hover:bg-primary hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Inicio</a
-              >
+              <h1 class="text-black px-3 py-2 font-semibold">Comunity Fest and Code</h1>
+              <router-link to="/home" class="text-lg text-black hover:bg-primary hover:text-white px-3 py-2 rounded-md text-sm font-medium">Inicio</router-link>
             </div>
           </div>
-        </div>
+          </div>
         <div
           class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
         >
@@ -120,51 +114,41 @@
               leave-to-class="transform opacity-0 scale-95"
             ></transition>
 
-            <div
-              v-show="isOpen"
-              class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="user-menu"
-            >
-              <a
-                href="#"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                role="menuitem"
-                >Your Profile</a
-              >
-              <router-link to="/Profile"
-                ><a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  role="menuitem"
-                  >Inicia Sesión</a
-                >
-              </router-link>
-              <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign out</a> -->
+            <div v-show="isOpen" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                <router-link to="/auth/Porfile" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100">Your Porfile</router-link>
+                 <router-link to="/home" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100" @click="logout()">Sign out</router-link>
+            </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     <div v-show="isOpenMovile" class="sm:hidden" id="mobile-menu">
-      <div class="px-2 pt-2 pb-3 space-y-1">
-        <a
-          href="#"
-          class="text-black block px-3 py-2 rounded-md text-base font-medium"
-          >Inicio</a
-        >
-      </div>
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <router-link to="/home" class="text-black block px-3 py-2 rounded-md text-base font-medium">Inicio</router-link>
+        </div>
     </div>
   </nav>
 </template>
 
 <script>
-export default {
-  name: "navbar",
-  data: () => ({
-    isOpen: false,
-    isOpenMovile: false,
-  }),
-};
+import { firebase } from "../firebase/config";
+    export default {
+        name: 'navbar',
+        data(){
+            return {
+            isOpen: false,
+            isOpenMovile: false,
+            currentUser: null
+            }
+        },
+        created() {
+         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        },
+        methods: {
+            async logout() {
+                await firebase.auth().signOut();
+                this.$router.push("/");
+            }
+        }
+    }
 </script>

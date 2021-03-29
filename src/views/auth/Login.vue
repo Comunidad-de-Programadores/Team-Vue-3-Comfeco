@@ -1,7 +1,16 @@
 <template>
-  <div class="flex items-center bg-white dark:bg-gray-900">
-    <div class="container mx-auto">
-      <div class="max-w-md mx-auto my-10">
+  <div id="Login">
+    <div id="header">
+      <div id="header-container">
+        <Header/>
+      </div>
+      <div id="login-mobile-decoration" class=" w-full lg:hidden">
+        <img src="../../assets/images/login-decoration.png" alt="Purple Water UI">
+      </div>
+    </div>
+    <div id="Login-form" class="flex items-center bg-white dark:bg-gray-900 z-0">
+    <div class="container mx-auto lg:my-16">
+      <div class="max-w-md mx-auto lg:my-16">
         <!-- <img class="mx-auto h-32" src="@/assets/icons/code-icon.svg" alt="Code" /> -->
         <div class="text-center flex justify-evenly items-center mb-12">
           <p
@@ -108,7 +117,7 @@
             </div>
             <div class="flex">
               <button type="button" class="social-button mr-1">
-                <img class="h-7" src="@/assets/icons/fb.svg" alt="Facebook" />
+                <img class="h-7" src="../../assets/icons/fb.svg" alt="Facebook" />
                 <span class="pl-2">Facebook</span>
               </button>
               <button
@@ -116,7 +125,7 @@
                 class="social-button ml-1"
                 @click="startGoogleLogin()"
               >
-                <img class="h-6" src="@/assets/icons/google.svg" alt="Google" />
+                <img class="h-6" src="../../assets/icons/google.svg" alt="Google" />
                 <span class="pl-2">Google</span>
               </button>
             </div>
@@ -125,13 +134,37 @@
       </div>
     </div>
   </div>
+  <div id="footer" class="">
+    <div class="hidden lg:inline-block">
+      <Footer/>
+    </div>
+    <div class="bg-gray-200 lg:hidden">
+      <p class="inline-block h-full w-6/12 text-center text-lg subpixel-antialiased font-normal">COMFECO &copy; 2020</p>
+      <ul class="inline-block w-6/12">
+        <li class="w-full pl-10 pt-1">
+          <a href="https://www.youtube.com/channel/UC0oi8uH1vxDcyt7b_3iByew" class="inline-block w-5 h-5 content-center items-center m-2 bg-gray-200">
+            <img src="../../assets/icons/footer-mobile-icons/youtube.svg" alt="Youtube Logo" class="bg-gray-200">
+          </a>
+          <a href="https://www.instagram.com/comfeco/" class="inline-block w-5 h-5 content-center items-center m-2 bg-gray-200">
+            <img src="../../assets/icons/footer-mobile-icons/instagram.svg" alt="Instagram Logo" class="bg-gray-200">
+          </a>
+          <a href="https://www.facebook.com/groups/2637132626546045" class="inline-block w-5 h-5 content-center items-center m-2 bg-gray-200">
+            <img src="../../assets/icons/footer-mobile-icons/facebook.svg" alt="Facebook Logo" class="bg-gray-200">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
 </template>
 
 <script>
+import Header from '../../components/Header'
 import { required, email, minLength } from "vuelidate/lib/validators";
 import { firebase, googleAuthProvider } from "@/firebase/config";
-import eye from "@/assets/icons/eye.svg";
-import eyeOff from "@/assets/icons/eye-off.svg";
+import eye from "../../assets/icons/eye.svg";
+import eyeOff from "../../assets/icons/eye-off.svg";
+import Footer from '../../components/Footer'
 export default {
   name: "Login",
   data() {
@@ -175,5 +208,9 @@ export default {
         });
     },
   },
+  components: {
+    Header,
+    Footer
+  }
 };
 </script>

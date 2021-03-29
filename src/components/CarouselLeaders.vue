@@ -12,7 +12,7 @@
         v-for="i in content"
         :key="i.name"
       >
-        <div class="h-full w-60 rounded-xl overflow-hidden shadow-2xl">
+        <div class="h-full w-60 rounded-xl overflow-hidden">
           <div class="h-3/4">
             <img
               :src="i.leaderImg"
@@ -50,12 +50,12 @@ export default {
     return {
       image: "../assets/images/team-leaders/1.webp",
       settings: {
-        dots: true,
+        dots: false,
         infinite: true,
         autoplay: true,
         autoplaySpeed: 2000,
         speed: 500,
-        arrows: true,
+        arrows: false,
         slidesToShow: 4,
         slidesToScroll: 4,
         initialSlide: 0,
